@@ -4,9 +4,10 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import mongoose  from 'mongoose';
 
 
-
+require('dotenv').config();
 
 const restAPIApp = express();
 
@@ -25,6 +26,11 @@ restAPIAppServer.listen(8080, ()=>{
     
 })
 
+//MongoDB Setup
+const MONGO_URL = process.env.MONGO_URL;
 
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URL);
+mongoose.connection.on('error', (error:Error) => console.log(error));
 
 
