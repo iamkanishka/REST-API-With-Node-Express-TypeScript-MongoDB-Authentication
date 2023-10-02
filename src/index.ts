@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import mongoose  from 'mongoose';
+import router from 'router';
 
 
 require('dotenv').config();
@@ -33,4 +34,4 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error:Error) => console.log(error));
 
-
+restAPIApp.use(router())
